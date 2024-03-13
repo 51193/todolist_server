@@ -1,9 +1,7 @@
 package com.cc.todolist.service;
 
 import com.cc.todolist.dao.MemoDao;
-import com.cc.todolist.dao.UserDao;
 import com.cc.todolist.entity.MemoEntity;
-import com.cc.todolist.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
