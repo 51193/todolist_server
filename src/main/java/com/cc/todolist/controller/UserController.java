@@ -7,6 +7,7 @@ import com.cc.todolist.util.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,7 +61,7 @@ public class UserController {
         return map;
     }
 
-    @PostMapping("/user/check")
+    @GetMapping("/user/check")
     public Map<String, Object> check(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
 
@@ -79,13 +80,13 @@ public class UserController {
         return map;
     }
 
-    @PostMapping("/user/test")
+    @GetMapping("/user/test")
     public Map<String, Object> test(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         // 验证令牌  交给拦截器去做
         // 只需要在这里处理自己的业务逻辑
         String token = request.getHeader("token");
-        DecodedJWT verify = JWTUtil.verify(token);
+        JWTUtil.verify(token);
         map.put("state", true);
         map.put("msg", "请求成功");
         return map;

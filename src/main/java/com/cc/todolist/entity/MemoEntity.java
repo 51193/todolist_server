@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Data
@@ -16,11 +15,10 @@ public class MemoEntity {
     Integer id;
     String title;
     String content;
-    boolean have_start;
-    boolean have_end;
-    Timestamp start_time;
-    Timestamp end_time;
+    String start;
+    String end;
     Integer owner;
     boolean disable;
-    List<Integer> derive;
+    String derive;
+    List<Integer> derive_list;
 }

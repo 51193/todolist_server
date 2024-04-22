@@ -5,9 +5,33 @@
 
 <!--namespace 绑定一个对应的DAO/Mapper接口-->
 <mapper namespace="com.cc.todolist.dao.MemoDao">
-    <select id="getOwners" parameterType="MemoEntity" resultType="MemoEntity">
+    <select id="getMemos" parameterType="Integer" resultType="MemoEntity">
         select *
         from memo
         where owner = #{owner}
     </select>
+
+    <select id="getMemosByDay" resultType="MemoEntity">
+        select *
+        from memo
+        where owner = #{owner}
+          and (start LIKE CONCAT(#{date}, '%')
+            or end LIKE CONCAT(#{date}, '%'))
+    </select>
+
+    <insert id="insertMemo" parameterType="MemoEntity">
+        insert into memo(title, content, start, end, owner, disable, derive)
+        values (#{title}, #{content}, #{start}, #{end}, #{owner}, #{disable}, #{derive})
+    </insert>
+
+    <update id="updateMemo" parameterType="MemoEntity">
+        update memo
+        set title   = #{title},
+            content = #{content},
+            start   = #{start},
+            end     = #{end},
+            derive  = #{derive}
+        where id = #{id}
+          and owner = #{owner}
+    </update>
 </mapper>
